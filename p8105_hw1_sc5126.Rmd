@@ -15,3 +15,11 @@ data("early_january_weather")
 ```
 
 
+Description of the dataset:\
+The variables in the dataset include `r colnames(early_january_weather)`. \
+The highest temperature is `r max(early_january_weather$temp)` and the lowest temperature is `r min(early_january_weather$temp)`. The mean of humidity is `r mean(early_january_weather$humid)` and the mean of visibility is `r mean(early_january_weather$visib)`.\
+There are `r nrow(early_january_weather)` rows and `r ncol(early_january_weather)` columns in the dataset.\
+The mean temperature is `r mean(early_january_weather$temp)`.\
+
+
+
