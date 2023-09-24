@@ -1,0 +1,17 @@
+---
+title: "p8105_hw1_sc5126.Rmd"
+author: "Si Chen"
+date: "2023-09-23"
+output: github_document
+---
+
+
+## Problem 1
+
+load dataset
+```{r load_data}
+library(moderndive)
+data("early_january_weather")
+```
+
+
