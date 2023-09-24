@@ -8,8 +8,8 @@ output: github_document
 
 ## Problem 1
 
-load dataset
-```{r load_data}
+**Load dataset** 
+```{r load_data, warning = FALSE, message = FALSE}
 library(moderndive)
 library(ggplot2)
 library(tidyverse)
@@ -17,7 +17,7 @@ data("early_january_weather")
 ```
 
 
-Description of the dataset:\
+**Description of the dataset:**\
 The variables in the dataset include `r colnames(early_january_weather)`. \
 The highest temperature is `r max(early_january_weather$temp)` and the lowest temperature is `r min(early_january_weather$temp)`. The mean of humidity is `r mean(early_january_weather$humid)` and the mean of visibility is `r mean(early_january_weather$visib)`.\
 There are `r nrow(early_january_weather)` rows and `r ncol(early_january_weather)` columns in the dataset.\
@@ -28,7 +28,7 @@ The mean temperature is `r mean(early_january_weather$temp)`.\
 
 
 
-```{r plot_prob1}
+```{r plot_prob1, message = FALSE}
 ggplot(early_january_weather, aes(x = time_hour, y = temp, color = humid)) + geom_point()
 ggsave("scatter_temp_time.png")
 ```
@@ -37,23 +37,36 @@ As the time_hour increases, the temperature shows a generally increasing trend a
 
 ## Problem 2
 
-Create a data frame 
+**Create a data frame**
 ```{r create_df}
 df = tibble(
   vec_numeric = rnorm(10),
   vec_logical = vec_numeric > 0,
-  vec_char = character(10),
-  vec_factor = factor(c("1", "2", "3", "1", "2", "3", "1", "2", "3", "1"))
+  vec_char = c("a","b","c","d","e","f","g","h","i","j"),
+  vec_factor = factor(c("a", "b", "c", "a", "b", "c","a", "b", "c","a"))
 )
 ```
 
-Take the mean of each variable 
+**Take the mean of each variable** 
 ```{r pull_mean}
 mean_num = mean(pull(df, vec_numeric))
 mean_logical = mean(pull(df, vec_logical))
 mean_char = mean(pull(df, vec_char))
 mean_factor = mean(pull(df, vec_factor))
 ```
-Taking the mean works for the numeric variable and the logical variable, but it dosen't work for the logical variable and the factor variable. 
+Taking the mean works for the numeric variable and the logical variable, but it doesn't work for the character variable and the factor variable.\
+
+
+
+**Convert to numeric variable**
+```{r variable_convert, results = "hide"}
+num_logical = as.numeric(pull(df, vec_logical))
+num_char = as.numeric(pull(df, vec_char))
+num_factor = as.numeric(pull(df, vec_factor))
+```
+The logical and factor variables are converted to numeric type successfully, while the character variable fails to be converted to be numeric (or is converted to NAs by coercion).
+Yes.The mean function can only be applied to numeric and logical vectors.
+
+
 
 
