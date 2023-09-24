@@ -11,6 +11,7 @@ output: github_document
 load dataset
 ```{r load_data}
 library(moderndive)
+library(ggplot2)
 data("early_january_weather")
 ```
 
@@ -20,6 +21,21 @@ The variables in the dataset include `r colnames(early_january_weather)`. \
 The highest temperature is `r max(early_january_weather$temp)` and the lowest temperature is `r min(early_january_weather$temp)`. The mean of humidity is `r mean(early_january_weather$humid)` and the mean of visibility is `r mean(early_january_weather$visib)`.\
 There are `r nrow(early_january_weather)` rows and `r ncol(early_january_weather)` columns in the dataset.\
 The mean temperature is `r mean(early_january_weather$temp)`.\
+
+
+
+
+
+
+```{r plot_prob1}
+ggplot(early_january_weather, aes(x = time_hour, y = temp, color = humid)) + geom_point()
+ggsave("scatter_temp_time.png")
+```
+As the time_hour increases, the temperature shows a generally increasing trend and the humidity increases as well.
+
+
+
+
 
 
 
