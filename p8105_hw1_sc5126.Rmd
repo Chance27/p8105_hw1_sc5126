@@ -12,6 +12,7 @@ load dataset
 ```{r load_data}
 library(moderndive)
 library(ggplot2)
+library(tidyverse)
 data("early_january_weather")
 ```
 
@@ -34,8 +35,25 @@ ggsave("scatter_temp_time.png")
 As the time_hour increases, the temperature shows a generally increasing trend and the humidity increases as well.
 
 
+## Problem 2
 
+Create a data frame 
+```{r create_df}
+df = tibble(
+  vec_numeric = rnorm(10),
+  vec_logical = vec_numeric > 0,
+  vec_char = character(10),
+  vec_factor = factor(c("1", "2", "3", "1", "2", "3", "1", "2", "3", "1"))
+)
+```
 
-
+Take the mean of each variable 
+```{r pull_mean}
+mean_num = mean(pull(df, vec_numeric))
+mean_logical = mean(pull(df, vec_logical))
+mean_char = mean(pull(df, vec_char))
+mean_factor = mean(pull(df, vec_factor))
+```
+Taking the mean works for the numeric variable and the logical variable, but it dosen't work for the logical variable and the factor variable. 
 
 
